@@ -1,0 +1,21 @@
+name: Get User
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  get_user:
+    name: Get User
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Up Issue Assigner
+        uses: achintya-7/issue-assigner@master
+      
+      - name: Run main.go
+        run : go run main.go
+        env:
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+  
